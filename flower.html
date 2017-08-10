@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en-US">
+ <head> 
+  <meta charset="UTF-8" /> 
+  <title>flower</title> 
+  <style type="text/css">  
+body{font-family: "Microsoft YaHei UI", Sans-Serif;text-align:center;}
+table{
+	margin:auto;
+}
+table tr td:nth-child(-n+1){
+	width:70px;
+}
+</style> 
+ </head> 
+ <body>
+   当前金钱：
+  <span id="coin">1500</span>$
+  <br /> 
+   当前育种次数：
+  <span id="matingTimes">0</span>次
+  <br /> 
+  <br /> ----------花架(<span id="count">3</span>/10)----------
+  <br /> 
+  <table> 
+   <tbody>
+    <tr>
+     <td id="fl">代号</td>
+     <td id="m">父本</td>
+     <td id="f">母本</td>
+     <td id="s">售出/$</td>
+    </tr> 
+    <tr id="floor0" style="display:inline-row;">
+     <td id="fl0">123</td>
+     <td><input id="fp0" name="female" type="radio" value="0" onclick="checkfp(0);" /><span id="fpt0">/3</span></td>
+     <td><input id="mp0" name="male"   type="radio" value="0" onclick="checkmp(0);" /><span id="mpt0">/3</span></td>
+     <td><input id="s0" type="button" value="15" onclick="sale(0);"/></td>
+    </tr> 
+    <tr id="floor1" style="display:inline-row;">
+     <td id="fl1">363</td>
+     <td><input id="fp1" name="female" type="radio" value="1" onclick="checkfp(1);" /><span id="fpt1">/3</span></td>
+     <td><input id="mp1" name="male"   type="radio" value="1" onclick="checkmp(1);" /><span id="mpt1">/3</span></td>
+     <td><input id="s1" type="button" value="30" onclick="sale(1);"/></td>
+    </tr> 
+    <tr id="floor2" style="display:inline-row;">
+     <td id="fl2">254</td>
+     <td><input id="fp2" name="female" type="radio" value="2" onclick="checkfp(2);" /><span id="fpt2">/3</span></td>
+     <td><input id="mp2" name="male"   type="radio" value="2" onclick="checkmp(2);" /><span id="mpt2">/3</span></td>
+     <td><input id="s2" type="button" value="45" onclick="sale(2);"/></td>
+    </tr> 
+    <tr id="floor3" style="display:none;">
+     <td id="fl3"></td>
+     <td><input id="fp3" name="female" type="radio" value="3" onclick="checkfp(3);" /><span id="fpt3" /3</span></td>
+     <td><input id="mp3" name="male"   type="radio" value="3" onclick="checkmp(3);" /><span id="mpt3" /3</span></td>
+     <td><input id="s3" type="button" value="" onclick="sale(3);" style="display:none;"/></td>
+    </tr> 
+    <tr id="floor4" style="display:none;">
+     <td id="fl4"></td>
+     <td><input id="fp4" name="female" type="radio" value="4" onclick="checkfp(4);" /><span id="fpt4" /3</span></td>
+     <td><input id="mp4" name="male"   type="radio" value="4" onclick="checkmp(4);" /><span id="mpt4" /3</span></td>
+     <td><input id="s4" type="button" value="" onclick="sale(4);" style="display:none;"/></td>
+    </tr> 
+    <tr id="floor5" style="display:none;">
+     <td id="fl5"></td>
+     <td><input id="fp5" name="female" type="radio" value="5" onclick="checkfp(5);" /><span id="fpt5" /3</span></td>
+     <td><input id="mp5" name="male"   type="radio" value="5" onclick="checkmp(5);" /><span id="mpt5" /3</span></td>
+     <td><input id="s5" type="button" value="" onclick="sale(5);" style="display:none;"/></td>
+    </tr> 
+    <tr id="floor6" style="display:none;">
+     <td id="fl6"></td>
+     <td><input id="fp6" name="female" type="radio" value="6" onclick="checkfp(6);" /><span id="fpt6" /3</span></td>
+     <td><input id="mp6" name="male"   type="radio" value="6" onclick="checkmp(6);" /><span id="mpt6" /3</span></td>
+     <td><input id="s6" type="button" value="" onclick="sale(6);" style="display:none;"/></td>
+    </tr> 
+    <tr id="floor7" style="display:none;">
+     <td id="fl7"></td>
+     <td><input id="fp7" name="female" type="radio" value="7" onclick="checkfp(7);" /><span id="fpt7" /3</span></td>
+     <td><input id="mp7" name="male"   type="radio" value="7" onclick="checkmp(7);" /><span id="mpt7" /3</span></td>
+     <td><input id="s7" type="button" value="" onclick="sale(7);" style="display:none;"/></td>
+    </tr> 
+    <tr id="floor8" style="display:none;">
+     <td id="fl8"></td>
+     <td><input id="fp8" name="female" type="radio" value="8" onclick="checkfp(8);" /><span id="fpt8" /3</span></td>
+     <td><input id="mp8" name="male"   type="radio" value="8" onclick="checkmp(8);" /><span id="mpt8" /3</span></td>
+     <td><input id="s8" type="button" value="" onclick="sale(8);" style="display:none;"/></td>
+    </tr> 
+    <tr id="floor9" style="display:none;">
+     <td id="fl9"></td>
+     <td><input id="fp9" name="female" type="radio" value="9" onclick="checkfp(9);" /><span id="fpt9" /3</span></td>
+     <td><input id="mp9" name="male"   type="radio" value="9" onclick="checkmp(9);" /><span id="mpt9" /3</span></td>
+     <td><input id="s9" type="button" value="" onclick="sale(9);" style="display:none;"/></td>
+    </tr> 
+</table>
+
+  <br /> ----------育种室----------
+  <br /> 已选父本: <span id="fparent"></span>
+  <br /> 已选母本: <span id="mparent"></span>
+  <br /> 
+  <input id="mating" type="button" value="育种" onclick="mating();"/>
+  <br /> 
+  <br /> 子代Ａ&emsp;: <span id="sonA">&emsp;</span>&emsp;<input id="moveA" type="button" value="移入花架" onclick="move('A');" style="display:none;"/><input id="saleA" type="button" value="出售" onclick="saleSon('A');" style="display:none;"/>
+  <br /> 子代Ｂ&emsp;: <span id="sonB">&emsp;</span>&emsp;<input id="moveB" type="button" value="移入花架" onclick="move('B');" style="display:none;"/><input id="saleB" type="button" value="出售" onclick="saleSon('B');" style="display:none;"/>
+  <br /> 注意：如果下一次育种时子代未移入花架则会被丢弃
+  <br /> 
+  <br /> ----------商店----------
+  <br /> [1-3][1-3][1-3]型&emsp;<input id="s9" type="button" value="500"  onclick="shop(1);"/>$
+  <br /> [4-5][4-6][4-6]型&emsp;<input id="s9" type="button" value="1000" onclick="shop(2);" />$
+  <br /> [6-7][7-9][7-9]型&emsp;<input id="s9" type="button" value="1500" onclick="shop(3);" />$
+  <br /> 
+  <br /> ----------说明----------
+  <br /> 代号释义：首位为花瓣数，第二位为叶型，末位为花型
+  <br /> 自交有一定几率退化，杂交有一定几率为父本或母本
+  <br /> 每种花可做父本母本各3次，每次产2株
+  <br /> 目标：代号为700的花
+  <br /> 提示：父母本叶型和为17或10可得0，父母本花型和为18或11可得0
+<script>
+var matingTimes = 0;
+var coin = 1500;
+var count = 3;
+var fparentNum = 0;
+var mparentNum = 0;
+function mating(){
+	var fmatingTimes = document.getElementById('fpt'+fparentNum).innerHTML;
+	var mmatingTimes = document.getElementById('mpt'+mparentNum).innerHTML;
+
+	fmatingTimes = parseInt(fmatingTimes[1]);
+	mmatingTimes = parseInt(mmatingTimes[1]);
+	
+
+
+	if( fmatingTimes > 0 && mmatingTimes > 0 ){
+		var fparent = document.getElementById("fparent").innerHTML;
+		var mparent = document.getElementById("mparent").innerHTML;
+		if( fparent == "" || mparent == "" ){ alert("还未选择父本或母本哟~");return false;}
+		if(fparent==mparent) {matingSelf();}
+		else{matingOthers();}
+		matingTimes++;
+		document.getElementById('matingTimes').innerHTML = matingTimes;
+		document.getElementById('moveA').style.display = "inline";
+		document.getElementById('moveB').style.display = "inline";
+		document.getElementById('saleA').style.display = "inline";
+		document.getElementById('saleB').style.display = "inline";
+		
+		document.getElementById('fpt'+fparentNum).innerHTML = "/" + (fmatingTimes-1);
+		document.getElementById('mpt'+mparentNum).innerHTML = "/" + (mmatingTimes-1);
+		document.getElementById('moveB').style.display = "inline";
+		
+		check700();
+	}
+	else{
+		alert("父本或母本已经没有育种次数啦~");
+	}
+}
+
+function matingSelf(){
+	var fparent = document.getElementById("fparent").innerHTML;
+	var mparent = document.getElementById("mparent").innerHTML;
+	var A = parseInt(fparent[0]);
+	var B = parseInt(fparent[1]);
+	var C = parseInt(fparent[2]);
+	var selfRate = (1-((A+B+C)/3-1)*0.1)*100;
+	
+	if( Math.random()*100 <= selfRate ){
+		document.getElementById("sonA").innerHTML = fparent;
+	}
+	else{
+		document.getElementById("sonA").innerHTML = matingSelfCalculate(A,B,C);
+	}
+	if( Math.random()*100 <= selfRate ){
+		document.getElementById("sonB").innerHTML = fparent;
+	}
+	else{
+		document.getElementById("sonB").innerHTML = matingSelfCalculate(A,B,C);
+	}
+}
+
+function matingSelfCalculate(A,B,C){
+	a = Math.max(A-parseInt(Math.sqrt(A*B*C)/1.41-1),1);
+	b = Math.max(B-parseInt(Math.sqrt(A*B+C)/1.41-1),1);
+	c = Math.max(C-parseInt(Math.sqrt(A+B*C)/1.41-1),1);
+	return a+""+b+""+c;
+}
+
+function matingOthers(){
+	var fparent = document.getElementById("fparent").innerHTML;
+	var mparent = document.getElementById("mparent").innerHTML;
+	var A1 = parseInt(fparent[0]);
+	var A2 = parseInt(mparent[0]);
+	var B1 = parseInt(fparent[1]);
+	var B2 = parseInt(mparent[1]);
+	var C1 = parseInt(fparent[2]);
+	var C2 = parseInt(mparent[2]);
+	var selfRate = ((A1+B1+C1+A2+B2+C2)/6-1)*10*0.5;
+	var ranA = Math.random()*100;
+	var ranB = Math.random()*100;
+	if( ranA <= selfRate ){
+		document.getElementById("sonA").innerHTML = fparent;
+	}
+	else if( selfRate < ranA && ranA > selfRate*2 ){
+		document.getElementById("sonA").innerHTML = mparent;
+	}
+	else{
+		document.getElementById("sonA").innerHTML = matingOthersCalculate(A1,B1,C1,A2,B2,C2);
+	}
+	if( ranB <= selfRate ){
+		document.getElementById("sonB").innerHTML = fparent;
+	}
+	else if( selfRate < ranB && ranB > selfRate*2 ){
+		document.getElementById("sonB").innerHTML = mparent;
+	}
+	else{
+		document.getElementById("sonB").innerHTML = matingOthersCalculate(A1,B1,C1,A2,B2,C2);
+	}
+}
+
+function matingOthersCalculate(A1,B1,C1,A2,B2,C2){
+	a = Math.min(parseInt((A1+A2+1.5)/2),7);
+	b = parseInt((B1+B2+27)/3*13)%10; //B1+B2=17/10
+	c = parseInt((C1+C2+5)/3*17)%10; //C1+C2=18/11
+	return a+""+b+""+c;
+}
+
+function check700(){
+	var sonA = document.getElementById("sonA").innerHTML;
+	var sonB = document.getElementById("sonB").innerHTML;
+	if( sonA == "700" || sonB == "700" ){
+		alert("恭喜你得到了700花\n\n你目前的金钱是："+ coin + "\n育种次数是："+ matingTimes)
+	}
+}
+
+function move(num){
+	if(count<10){ 
+		for(var i = 0; i <= 9; i++){
+			if(document.getElementById("floor"+i).style.display == "none"){
+				var flower = document.getElementById("son"+num).innerHTML;
+				document.getElementById("fl"+i).innerHTML = flower;
+				document.getElementById("s"+i).value = parseInt(flower[0])*3 + parseInt(flower[1])*5 + parseInt(flower[2])*7;
+				document.getElementById("s"+i).style.display = "inline";
+				document.getElementById("son"+num).innerHTML = "&emsp;";
+				document.getElementById("move"+num).style.display = "none";
+				document.getElementById("floor"+i).style.display = "table-Row";
+				document.getElementById("mpt"+i).innerHTML = "/3";
+				document.getElementById("fpt"+i).innerHTML = "/3";
+				document.getElementById("mp"+i).style.display = "inline";
+				document.getElementById("fp"+i).style.display = "inline";
+				document.getElementById("count").innerHTML = ++count;
+				document.getElementById('sale'+num).style.display = "none";
+				break;
+			}
+		}
+	}
+	else{
+		alert("花架没有空位！"); 
+	}
+}
+
+function sale(num){
+
+	document.getElementById("s"+num).style.display = "none";
+	coin += parseInt(document.getElementById("s"+num).value);
+	document.getElementById("s"+num).style.display = "none";
+	document.getElementById("mp"+num).style.display = "none";
+	document.getElementById("fp"+num).style.display = "none";
+	document.getElementById("coin").innerHTML = coin;
+	document.getElementById("fl"+num).innerHTML = "";
+	document.getElementById("fpt"+num).innerHTML = "";
+	document.getElementById("mpt"+num).innerHTML = "";
+
+	document.getElementById("floor"+num).style.display = "none";
+	document.getElementById("count").innerHTML = --count;
+}
+
+function checkfp(num){
+	fparentNum = num;
+	document.getElementById("fparent").innerHTML = document.getElementById("fl"+num).innerHTML;
+}
+
+function checkmp(num){
+	mparentNum = num;
+	document.getElementById("mparent").innerHTML = document.getElementById("fl"+num).innerHTML;
+}
+
+function shop(num){
+	if( coin >= num*500 ){
+		if( count < 10){
+			if( num == 1 ){
+				a=Math.max(Math.min(parseInt(Math.random()*10),3),1);
+				b=Math.max(Math.min(parseInt(Math.random()*10),3),1);
+				c=Math.max(Math.min(parseInt(Math.random()*10),3),1);
+			}
+			else if( num == 2 ){
+				a=Math.max(Math.min(parseInt(Math.random()*10),5),4);
+				b=Math.max(Math.min(parseInt(Math.random()*10),6),4);
+				c=Math.max(Math.min(parseInt(Math.random()*10),6),4);
+			}
+			else{
+				a=Math.max(Math.min(parseInt(Math.random()*10),7),6);
+				b=Math.max(Math.min(parseInt(Math.random()*10),9),7);
+				c=Math.max(Math.min(parseInt(Math.random()*10),9),7);		
+			}
+			//[1-3][1-3][1-3]
+			//[4-5][4-6][4-6]
+			//[6-7][7-9][7-9]
+			getFlower(a+""+b+""+c);
+			coin -= num*500;
+			document.getElementById("coin").innerHTML = coin;
+		}
+		else{
+			alert("花架没有空位！"); 
+		}
+	}
+	else{
+		alert("你的金钱不足！");
+	}
+
+}
+
+function getFlower(num){
+	for(var i = 0; i <= 9; i++){
+		if(document.getElementById("floor"+i).style.display == "none"){
+			document.getElementById("fl"+i).innerHTML = num;
+			document.getElementById("s"+i).value = parseInt(num[0])*3 + parseInt(num[1])*5 + parseInt(num[2])*7;
+			document.getElementById("s"+i).style.display = "inline";
+			document.getElementById("floor"+i).style.display = "table-Row";
+			document.getElementById("mpt"+i).innerHTML = "/3";
+			document.getElementById("fpt"+i).innerHTML = "/3";
+			document.getElementById("mp"+i).style.display = "inline";
+			document.getElementById("fp"+i).style.display = "inline";
+			document.getElementById("count").innerHTML = ++count;
+			break;
+		}
+	}
+}
+
+function saleSon(num){
+	var flower = document.getElementById("son"+num).innerHTML;
+	document.getElementById("son"+num).innerHTML = "";
+	document.getElementById("move"+num).style.display = "none";
+	document.getElementById("sale"+num).style.display = "none";
+	coin +=parseInt(flower[0])*3 + parseInt(flower[1])*5 + parseInt(flower[2])*7;
+	document.getElementById("coin").innerHTML = coin;
+}
+
+</script>  
+   </tbody>
+  </table>
+ </body>
+</html>
